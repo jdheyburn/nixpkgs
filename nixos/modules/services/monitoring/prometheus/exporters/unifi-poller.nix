@@ -8,6 +8,7 @@ let
   configFile = pkgs.writeText "prometheus-unifi-poller-exporter.json" (generators.toJSON {} {
     poller = { inherit (cfg.log) debug quiet; };
     unifi = { inherit (cfg) controllers; };
+    loki = { inherit (cfg) loki; };
     influxdb.disable = true;
     prometheus = {
       http_listen = "${cfg.listenAddress}:${toString cfg.port}";
